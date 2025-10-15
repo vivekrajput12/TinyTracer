@@ -1,5 +1,4 @@
 package com.url.shortner.service;
-
 import com.url.shortner.dtos.LoginRequest;
 import com.url.shortner.dtos.RegisterRequest;
 import com.url.shortner.dtos.UserDto;
@@ -14,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,9 +41,17 @@ public class UserService {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
+        System.out.println("authenticationn " + authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         String jwt = jwtUtils.generateToken(userDetails);
         return new JwtAuthResponse(jwt);
+    }
+
+    public User findUserByUserName(String name) {
+        return userRepository.findByUsername(name).orElseThrow(()-> new UsernameNotFoundException("User not found"));
+    }
+    public User findUserByUid(long uid) {
+        return userRepository.findByUid(uid).orElseThrow(()-> new UsernameNotFoundException("User not found"));
     }
 }

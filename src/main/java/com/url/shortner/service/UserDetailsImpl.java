@@ -12,20 +12,19 @@ import java.util.Collections;
 @NoArgsConstructor
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUid = 1L;
-    private long id;
+    private long uid;
     private String username;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
     public UserDetailsImpl(long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
+        this.uid = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
     public static UserDetailsImpl build(User user){
-        System.out.println("agyaaa "+ user.getRole());
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getRoleName());
         return new UserDetailsImpl(
                 user.getUid(),
