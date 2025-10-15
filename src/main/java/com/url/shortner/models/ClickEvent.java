@@ -5,14 +5,14 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 @Entity
+@Table(name = "clickEvent")
 @Data
 public class ClickEvent {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        private Long clickEventId;
         private LocalDateTime clickDate;
         @ManyToOne
-        @JoinColumn(name="url_id")
+        @JoinColumn(name="urlId")
         private UrlMapping urlMapping;
-
 }

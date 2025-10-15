@@ -6,18 +6,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "urlMapping")
 @Data
 public class UrlMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long urlId;
     private String originalUrl;
     private String shortUrl;
     private LocalDateTime createdDate;
     private int clickCount = 0;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "uid",referencedColumnName = "uid")
     private User user;
 
     @OneToMany(mappedBy = "urlMapping")

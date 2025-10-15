@@ -1,5 +1,6 @@
 package com.url.shortner.security;
 import com.url.shortner.service.UserDetailsImpl;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -29,11 +30,13 @@ public class JwtUtils {
     }
     public String generateToken(UserDetailsImpl userDetails){
             String username = userDetails.getUsername();
+            long uid = userDetails.getUid();
             String roles = userDetails.getAuthorities().stream()
                     .map(authority->authority.getAuthority())
                     .collect(Collectors.joining(","));
             return Jwts.builder()
                     .subject(username)
+                    .claim("uid" , uid)
                     .claim("roles",roles)
                     .issuedAt(new Date())
                     .expiration(new Date(new Date().getTime() + 172800000))

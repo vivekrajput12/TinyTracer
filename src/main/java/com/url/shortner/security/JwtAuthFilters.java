@@ -1,5 +1,7 @@
 package com.url.shortner.security;
 
+import com.url.shortner.service.UserDetailServiceImpl;
+import com.url.shortner.service.UserDetailsImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,14 +22,16 @@ public class JwtAuthFilters extends OncePerRequestFilter {
     private JwtUtils jwtTokenProvider;
 
     @Autowired
-    private UserDetailsService UserDetailsService;
+    private UserDetailServiceImpl UserDetailsService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             String jwt = jwtTokenProvider.getJwtFromHeader(request);
+            System.out.println("checking jwt " + jwt);
             if(jwt != null && jwtTokenProvider.validateToken(jwt)){
                 String userName = jwtTokenProvider.getUserNameFromJwt(jwt);
-                UserDetails userDetails = UserDetailsService.loadUserByUsername(userName);
+                System.out.println("checking 2 " + userName);
+                UserDetailsImpl userDetails = (UserDetailsImpl) UserDetailsService.loadUserByUsername(userName);
                 if(userDetails != null){
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
