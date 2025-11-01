@@ -1,8 +1,6 @@
-package com.url.shortner.dtos;
+package com.url.shortner.dtos.requestDto;
 
 import lombok.Data;
-
-import java.util.Set;
 
 @Data
 public class RegisterRequest {

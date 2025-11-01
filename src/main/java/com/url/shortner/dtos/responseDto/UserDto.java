@@ -1,4 +1,4 @@
-package com.url.shortner.dtos;
+package com.url.shortner.dtos.responseDto;
 
 import com.url.shortner.models.User;
 import lombok.Data;
