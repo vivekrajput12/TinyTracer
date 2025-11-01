@@ -1,8 +1,8 @@
 package com.url.shortner.controller;
 import com.url.shortner.dtos.ApiResponse;
-import com.url.shortner.dtos.LoginRequest;
-import com.url.shortner.dtos.RegisterRequest;
-import com.url.shortner.dtos.UserDto;
+import com.url.shortner.dtos.requestDto.LoginRequest;
+import com.url.shortner.dtos.requestDto.RegisterRequest;
+import com.url.shortner.dtos.responseDto.UserDto;
 import com.url.shortner.security.JwtAuthResponse;
 import com.url.shortner.service.UserService;
 import lombok.AllArgsConstructor;

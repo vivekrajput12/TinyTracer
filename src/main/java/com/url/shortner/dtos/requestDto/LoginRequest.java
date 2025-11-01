@@ -1,4 +1,4 @@
-package com.url.shortner.dtos;
+package com.url.shortner.dtos.requestDto;
 
 import lombok.AllArgsConstructor;
 //import lombok.Data;

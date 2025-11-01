@@ -1,4 +1,4 @@
-package com.url.shortner.dtos;
+package com.url.shortner.dtos.requestDto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

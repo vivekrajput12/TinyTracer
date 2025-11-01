@@ -1,7 +1,7 @@
 package com.url.shortner.service;
-import com.url.shortner.dtos.LoginRequest;
-import com.url.shortner.dtos.RegisterRequest;
-import com.url.shortner.dtos.UserDto;
+import com.url.shortner.dtos.requestDto.LoginRequest;
+import com.url.shortner.dtos.requestDto.RegisterRequest;
+import com.url.shortner.dtos.responseDto.UserDto;
 import com.url.shortner.models.Role;
 import com.url.shortner.models.User;
 import com.url.shortner.repository.RoleRepository;
